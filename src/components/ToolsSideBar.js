@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, ButtonGroup, Button, Paper, Box } from '@material-ui/core';
-import { PlayArrow, GetApp, School, RotateLeft } from '@material-ui/icons';
+import { Exposure, RotateLeft, Edit, Delete } from '@material-ui/icons';
 import { useRecoilState } from 'recoil';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,10 +33,11 @@ export function ToolsSidebar() {
     return (
         <Paper className={classes.root}>
             <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
-                <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
-                <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
-                <Box style={{height: "55vh", width: "100%"}}/>
-                <Button classes={{ root: classes.button, label: classes.label }}><School className={classes.icon} />About</Button>
+                <Button classes={{ root: classes.button, label: classes.label }}><Exposure className={classes.icon} />Levels</Button>
+                <Button classes={{ root: classes.button, label: classes.label }}><RotateLeft className={classes.icon} />Rotate</Button>
+                <Button classes={{ root: classes.button, label: classes.label }}><Edit className={classes.icon} />Annotate</Button>
+                <Box style={{height: "50vh", width: "100%"}}/>
+                <Button classes={{ root: classes.button, label: classes.label }}><Delete className={classes.icon} />Delete</Button>
             </ButtonGroup>
         </Paper>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, ButtonGroup, Button, Paper, Box } from '@material-ui/core';
-import { PlayArrow, GetApp, School } from '@material-ui/icons';
+import { PlayArrow, GetApp, School, Brightness4 } from '@material-ui/icons';
 import { useRecoilState } from 'recoil';
 import { currentImageState } from '../state/imageLibrary/images';
 
@@ -40,6 +40,7 @@ export function TopBar() {
                 <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
                 <Box style={{width: "100%"}}/>
+                <Button classes={{ root: classes.button, label: classes.label }}><Brightness4 className={classes.icon} />Theme</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><School className={classes.icon} />About</Button>
             </ButtonGroup>
         </Paper>
