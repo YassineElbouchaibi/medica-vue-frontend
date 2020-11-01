@@ -2,29 +2,33 @@ import {atom, selector} from 'recoil';
 
 const imagesURI = "http://localhost:5000/storage"
 
-export const imagesSelector = selector({
-  key: 'imagesQuery',
+const imagesDefaultState = selector({
+  key: 'imagesDefaultState',
   get: async () => {
     const response = await fetch(imagesURI);
-    return response.json();
+    const images = await response.json();
+
+    return images.map((image) => ({
+      image: image.image,
+      thumbnail: image.thumbnail,
+      customImage: false,
+    }));
   },
 });
 
-export const currentImageAtom = atom({
-  key: 'currentImageAtom',
-  default: null,
+export const imagesState = atom({
+  key: 'imagesState',
+  default: imagesDefaultState,
 });
 
-export const currentImageSelector = selector({
-  key: 'currentImageSelector',
+const currentImageDefaultState = selector({
+  key: 'currentImageDefaultState',
   get: ({get}) => {
-    if (get(currentImageAtom) == null) {
-      return get(imagesSelector)[0];
-    }
+      return get(imagesState)[0];
+  }
+});
 
-    return get(currentImageAtom);
-  },
-  set: ({set}, newValue) => {
-    set(currentImageAtom, newValue);
-  },
+export const currentImageState = atom({
+  key: 'currentImageState',
+  default: currentImageDefaultState,
 });

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Paper, ListItem, makeStyles, Zoom} from '@material-ui/core';
 import { FixedSizeList as List } from "react-window";
-import { imagesSelector, currentImageSelector } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState } from '../../state/imageLibrary/images';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { UploadArea } from './UploadButton';
 
@@ -30,7 +30,7 @@ const useThumbnailListStyles = makeStyles((theme) => ({
 
 const Row = ({ data, index, style }) => {
     const classes = useThumbnailListStyles();
-    const [, setCurrentImage] = useRecoilState(currentImageSelector);
+    const [, setCurrentImage] = useRecoilState(currentImageState);
 
     return (
         <ListItem
@@ -51,7 +51,7 @@ const Row = ({ data, index, style }) => {
 export function ThumbnailList() {
     const windowSize = useWindowSize();
     const classes = useThumbnailListStyles();
-    const tileData = useRecoilValue(imagesSelector);
+    const tileData = useRecoilValue(imagesState);
 
     const [leftElemHeight, setLeftElemHeight] = useState(0);
     const [leftElemWidth, setLeftElemWidth] = useState(0);
