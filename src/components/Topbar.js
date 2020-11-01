@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
-import { PlayArrow, GetApp } from '@material-ui/icons';
+import { makeStyles, ButtonGroup, Button, Paper, Box } from '@material-ui/core';
+import { PlayArrow, GetApp, School } from '@material-ui/icons';
 import { useRecoilState } from 'recoil';
 import { currentImageState } from '../state/imageLibrary/images';
 
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         height: "3rem",
         minWidth: "7rem",
+        maxWidth:  "7rem",
     },
     label: {
         // Aligns the content of the button vertically.
@@ -36,9 +37,11 @@ export function TopBar() {
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector">
+            <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector" fullWidth>
                 <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
+                <Box style={{width: "100%"}}/>
+                <Button classes={{ root: classes.button, label: classes.label }}><School className={classes.icon} />About</Button>
             </ButtonGroup>
         </Paper>
     );
