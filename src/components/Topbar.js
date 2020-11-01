@@ -4,6 +4,7 @@ import { PlayArrow, GetApp, School, Brightness4 } from '@material-ui/icons';
 import { useModal } from "react-modal-hook";
 import { useRecoilState } from 'recoil';
 import { currentImageState } from '../state/imageLibrary/images';
+import { isDarkThemeState } from '../state/theme';
 import { AboutModal } from '../screens/AboutModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,13 @@ const useStyles = makeStyles((theme) => ({
 
 export function TopBar() {
     const classes = useStyles();
+    const [isDarkTheme, setIsDarkTheme] = useRecoilState(isDarkThemeState)
     const [showModal, hideModal] = useModal(() => (<AboutModal hideModal={hideModal}/>));
+
+    const toggleTheme = () => {
+        console.log("isDarkTheme", isDarkTheme);
+        setIsDarkTheme(!isDarkTheme);
+    }
 
     return (
         <Paper className={classes.root}>
@@ -41,7 +48,7 @@ export function TopBar() {
                 <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
                 <Button disabled style={{width: "100%"}}/>
-                <Button classes={{ root: classes.button, label: classes.label }}><Brightness4 className={classes.icon} />Theme</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={toggleTheme}><Brightness4 className={classes.icon} />Theme</Button>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={showModal}><School className={classes.icon} />About</Button>
             </ButtonGroup>
         </Paper>
