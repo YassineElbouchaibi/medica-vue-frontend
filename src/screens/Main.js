@@ -1,25 +1,31 @@
 import React from 'react';
-import CornerstoneViewport from 'react-cornerstone-viewport'
-import { useRecoilState } from 'recoil';
 import './Main.css';
-import { todoListState } from '../state/Cornerstone/tools'
-import { Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import '../initCornerstone';
+import { ThumbnailList } from '../components/ThumbnailList/ThumbnailList';
+import { ImageViewer } from '../components/ImageViewer/ImageViewer';
 
 function Main() {
-    const [tools, setTools] = useRecoilState(todoListState)
-
-    return (
-        <div className="Main">
-            <Paper className="CornerstoneContainer" elevation={2}>
-                <CornerstoneViewport
-                    tools={tools}
-                    imageIds={[
-                        'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini.jpg',
-                    ]}
-                />
-            </Paper>
-        </div>
-    );
+  return (
+    <div className="Main">
+      <Grid container>
+        <Grid item xs={2}>
+          <ThumbnailList />
+        </Grid>
+        <Grid item xs={10}>
+          <Grid item xs={12} style={{ height: "10%" }}></Grid>
+          <Grid container xs={12} style={{ height: "80%" }}>
+            <Grid item xs={1} style={{}}></Grid>
+            <Grid item xs={10} style={{ height: "100%" }}>
+              <ImageViewer/>
+            </Grid>
+            <Grid item xs={1} style={{}}></Grid>
+          </Grid>
+          <Grid item xs={12} style={{ height: "10%" }}></Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 export default Main;

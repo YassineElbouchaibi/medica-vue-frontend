@@ -1,3 +1,4 @@
+import { CssBaseline } from '@material-ui/core';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 
@@ -7,7 +8,10 @@ import Main from './screens/Main';
 function App() {
   return (
     <RecoilRoot>
-      <Main/>
+      <CssBaseline />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Main/>
+      </React.Suspense>
     </RecoilRoot>
   );
 }

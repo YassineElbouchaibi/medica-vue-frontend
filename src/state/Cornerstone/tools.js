@@ -4,15 +4,15 @@ export const todoListState = atom({
     key: 'cornerstoneTools',
     default: [
         // Mouse
-        {
-            name: 'RectangleScissors',
-            mode: 'active',
-            modeOptions: { mouseButtonMask: 1 },
-        },
+        // {
+        //     name: 'RectangleScissors',
+        //     mode: 'active',
+        //     modeOptions: { mouseButtonMask: 1 },
+        // },
         {
             name: 'Pan',
             mode: 'active',
-            modeOptions: { mouseButtonMask: 3 },
+            modeOptions: { mouseButtonMask: 2 },
         },
         // Scroll
         { name: 'ZoomMouseWheel', mode: 'active'},
