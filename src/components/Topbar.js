@@ -1,8 +1,10 @@
 import React from 'react';
-import { makeStyles, ButtonGroup, Button, Paper, Box } from '@material-ui/core';
+import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { PlayArrow, GetApp, School, Brightness4 } from '@material-ui/icons';
+import { useModal } from "react-modal-hook";
 import { useRecoilState } from 'recoil';
 import { currentImageState } from '../state/imageLibrary/images';
+import { AboutModal } from '../screens/AboutModal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,8 +15,6 @@ const useStyles = makeStyles((theme) => ({
         margin: "0.25rem 0.25rem 0 0.25rem",
         padding: "0 0.25rem 0 0.25rem",
         height: "calc(100% - 0.25rem)",
-    },
-    buttonGroup: {
     },
     button: {
         height: "3rem",
@@ -33,15 +33,16 @@ const useStyles = makeStyles((theme) => ({
 
 export function TopBar() {
     const classes = useStyles();
+    const [showModal, hideModal] = useModal(() => (<AboutModal hideModal={hideModal}/>));
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector" fullWidth>
+            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" fullWidth>
                 <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
-                <Box style={{width: "100%"}}/>
+                <Button disabled style={{width: "100%"}}/>
                 <Button classes={{ root: classes.button, label: classes.label }}><Brightness4 className={classes.icon} />Theme</Button>
-                <Button classes={{ root: classes.button, label: classes.label }}><School className={classes.icon} />About</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={showModal}><School className={classes.icon} />About</Button>
             </ButtonGroup>
         </Paper>
     );
