@@ -5,6 +5,7 @@ import '../initCornerstone';
 import { ThumbnailList } from '../components/ThumbnailList/ThumbnailList';
 import { ImageViewer } from '../components/ImageViewer/ImageViewer';
 import { ModeSwitcher } from '../components/ModeSwitcher';
+import { TopBar } from '../components/Topbar';
 
 function Main() {
   return (
@@ -14,7 +15,7 @@ function Main() {
           <ThumbnailList />
         </Grid>
         <Grid item xs={10}>
-          <Grid item xs={12} style={{ height: "10%" }}></Grid>
+          <Grid item xs={12} style={{ height: "9%" }}><TopBar/></Grid>
           <Grid container style={{ height: "80%" }}>
             <Grid item xs={1} style={{}}></Grid>
             <Grid item xs={10} style={{ height: "100%" }}>
