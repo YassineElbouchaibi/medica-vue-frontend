@@ -4,6 +4,7 @@ import { Paper, ListItem, makeStyles, Zoom} from '@material-ui/core';
 import { FixedSizeList as List } from "react-window";
 import { imagesSelector, currentImageSelector } from '../../state/imageLibrary/images';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { UploadArea } from './UploadButton';
 
 const useThumbnailListStyles = makeStyles((theme) => ({
     root: {
@@ -29,7 +30,7 @@ const useThumbnailListStyles = makeStyles((theme) => ({
 
 const Row = ({ data, index, style }) => {
     const classes = useThumbnailListStyles();
-    const [currentImage, setCurrentImage] = useRecoilState(currentImageSelector);
+    const [, setCurrentImage] = useRecoilState(currentImageSelector);
 
     return (
         <ListItem
@@ -63,9 +64,10 @@ export function ThumbnailList() {
 
     return (
         <Paper className={classes.root} ref={leftColumnRef}>
+            <UploadArea/>
             <List
                 className="List"
-                height={leftElemHeight}
+                height={leftElemHeight * 0.85}
                 itemSize={leftElemWidth * 0.7}
                 width={leftElemWidth}
                 itemCount={tileData.length}
