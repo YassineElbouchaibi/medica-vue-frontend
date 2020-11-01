@@ -14,7 +14,7 @@ function Main() {
         </Grid>
         <Grid item xs={10}>
           <Grid item xs={12} style={{ height: "10%" }}></Grid>
-          <Grid container xs={12} style={{ height: "80%" }}>
+          <Grid container style={{ height: "80%" }}>
             <Grid item xs={1} style={{}}></Grid>
             <Grid item xs={10} style={{ height: "100%" }}>
               <ImageViewer/>
