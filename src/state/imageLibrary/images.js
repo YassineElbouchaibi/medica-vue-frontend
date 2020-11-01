@@ -24,4 +24,7 @@ export const currentImageSelector = selector({
 
     return get(currentImageAtom);
   },
+  set: ({set}, newValue) => {
+    set(currentImageAtom, newValue);
+  },
 });

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-import { Paper, ListItem, makeStyles} from '@material-ui/core';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { Paper, ListItem, makeStyles, Zoom} from '@material-ui/core';
 import { FixedSizeList as List } from "react-window";
-import { imagesSelector } from '../../state/imageLibrary/images';
+import { imagesSelector, currentImageSelector } from '../../state/imageLibrary/images';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 const useThumbnailListStyles = makeStyles((theme) => ({
@@ -10,15 +10,42 @@ const useThumbnailListStyles = makeStyles((theme) => ({
         margin: "0.25em 0 0 0.25em",
         padding: 0,
         height: "98%",
-        overflow: "hidden"
+        overflow: "hidden",
     },
+    imgContainer: {
+
+    },
+    img: {
+        borderRadius: "4%",
+        width: "100%",
+        transition: "all 0.3s ease 0s",
+        "&:hover": {
+            transform: "scale(1.1)",
+            zIndex: 1e4,
+        },
+    },
+
 }));
 
-const Row = ({ data, index, style }) => (
-    <ListItem key={index} style={style}>
-        <img alt={`image_${index}`} src={data[index].thumbnail} style={{ width: "100%" }} />
-    </ListItem>
-);
+const Row = ({ data, index, style }) => {
+    const classes = useThumbnailListStyles();
+    const [currentImage, setCurrentImage] = useRecoilState(currentImageSelector);
+
+    return (
+        <ListItem
+            button
+            key={index}
+            style={style}
+            onClick={() => {
+                setCurrentImage(data[index]);
+            }}
+            >
+            <Zoom in={true} mountOnEnter unmountOnExit>
+                <img alt={`image_${index}`} src={data[index].thumbnail} className={classes.img} />
+            </Zoom>
+        </ListItem>
+    );
+}
 
 export function ThumbnailList() {
     const windowSize = useWindowSize();
