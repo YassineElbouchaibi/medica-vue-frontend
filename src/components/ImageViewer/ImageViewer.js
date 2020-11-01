@@ -14,7 +14,7 @@ export function ImageViewer() {
       <CornerstoneViewport
           tools={tools}
           imageIds={[
-            currentImage.image,
+            currentImage.displayedImage,
           ]}
           viewportOverlayComponent={ImageOverlay}
           loadingIndecatorComponent={Loading}

@@ -1,13 +1,13 @@
 import React from 'react'
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { imagesState, currentImageState } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState, nullImage } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
 const theme = createMuiTheme({
     overrides: {
-        MuiDropzoneArea : {
+        MuiDropzoneArea: {
             root: {
                 maxHeight: "15vh",
                 minHeight: 0,
@@ -22,9 +22,9 @@ const theme = createMuiTheme({
     }
 });
 
-export function UploadArea({}) {
+export function UploadArea() {
     const [images, setImages] = useRecoilState(imagesState);
-    const [currentImage, setCurrentImage] = useRecoilState(currentImageState);
+    const [, setCurrentImage] = useRecoilState(currentImageState);
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -50,13 +50,19 @@ export function UploadArea({}) {
                     console.log(result);
 
                     const image = {
-                        image: result.secure_url,
                         thumbnail: result.secure_url,
                         customImage: true,
-                        uuid : uuidv4(),
-                        detections: [],
+                        uuid: uuidv4(),
+                        images: {
+                            original: result.secure_url,
+                            mask: nullImage,
+                            highlight: nullImage,
+                            annotation: nullImage,
+                        },
+                        displayedImage: result.secure_url,
+                        selectedMode: "original",
                     };
-                    
+
                     setImages([image, ...images]);
                     setCurrentImage(image);
                 }}

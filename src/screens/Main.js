@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import '../initCornerstone';
 import { ThumbnailList } from '../components/ThumbnailList/ThumbnailList';
 import { ImageViewer } from '../components/ImageViewer/ImageViewer';
+import { ModeSwitcher } from '../components/ModeSwitcher';
 
 function Main() {
   return (
@@ -21,7 +22,7 @@ function Main() {
             </Grid>
             <Grid item xs={1} style={{}}></Grid>
           </Grid>
-          <Grid item xs={12} style={{ height: "10%" }}></Grid>
+          <Grid item xs={12} style={{ height: "10%" }}><ModeSwitcher/></Grid>
         </Grid>
       </Grid>
     </div>

@@ -1,7 +1,5 @@
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +31,7 @@ export function ImageOverlay({
     return (
         <div className={classes.root}>
             <Grid container spacing={2}>
-                <Grid item xs={1.5} className={classes.infoBlock}>
+                <Grid item className={classes.infoBlock}>
                     <Typography variant="h6" align="left">
                         {`Zoom: ${scaleInPercent}`}
                     </Typography>
