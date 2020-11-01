@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Paper, ListItem, makeStyles, Zoom} from '@material-ui/core';
+import { Paper, ListItem, makeStyles, Zoom } from '@material-ui/core';
 import { FixedSizeList as List } from "react-window";
 import { imagesState, currentImageState } from '../../state/imageLibrary/images';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { UploadArea } from './UploadButton';
 
 const useThumbnailListStyles = makeStyles((theme) => ({
-    root: {
+    rootAbove: {
+        margin: "0.25em 0 0 0.25em",
+        height: "15%",
+        padding: 0,
+        overflow: "hidden",
+    },
+    rootBelow: {
         margin: "0.25em 0 0 0.25em",
         padding: 0,
-        height: "98%",
+        height: "82%",
         overflow: "hidden",
     },
     imgContainer: {
@@ -40,7 +46,7 @@ const Row = ({ data, index, style }) => {
             onClick={() => {
                 setCurrentImage(data[index]);
             }}
-            >
+        >
             <Zoom in={true} mountOnEnter unmountOnExit>
                 <img alt={`image_${index}`} src={data[index].thumbnail} className={classes.img} />
             </Zoom>
@@ -63,18 +69,22 @@ export function ThumbnailList() {
     }, [windowSize.width, windowSize.height]);
 
     return (
-        <Paper className={classes.root} ref={leftColumnRef}>
-            <UploadArea/>
-            <List
-                className="List"
-                height={leftElemHeight * 0.85}
-                itemSize={leftElemWidth * 0.7}
-                width={leftElemWidth}
-                itemCount={tileData.length}
-                itemData={tileData}
-            >
-                {Row}
-            </List>
-        </Paper>
+        <>
+            <Paper className={classes.rootAbove}>
+                <UploadArea />
+            </Paper>
+            <Paper className={classes.rootBelow} ref={leftColumnRef}>
+                <List
+                    className="List"
+                    height={leftElemHeight}
+                    itemSize={leftElemWidth * 0.7}
+                    width={leftElemWidth}
+                    itemCount={tileData.length}
+                    itemData={tileData}
+                >
+                    {Row}
+                </List>
+            </Paper>
+        </>
     );
 }
