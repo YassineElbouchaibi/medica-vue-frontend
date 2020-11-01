@@ -1,4 +1,5 @@
 import {atom, selector} from 'recoil';
+import { v4 as uuidv4 } from 'uuid';
 
 const imagesURI = "http://localhost:5000/storage"
 
@@ -12,6 +13,8 @@ const imagesDefaultState = selector({
       image: image.image,
       thumbnail: image.thumbnail,
       customImage: false,
+      uuid: uuidv4(),
+      detections: [],
     }));
   },
 });

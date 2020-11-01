@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { DropzoneAreaBase } from 'material-ui-dropzone'
 import { imagesState, currentImageState } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
+import { v4 as uuidv4 } from 'uuid';
 
 const theme = createMuiTheme({
     overrides: {
@@ -52,6 +53,8 @@ export function UploadArea({}) {
                         image: result.secure_url,
                         thumbnail: result.secure_url,
                         customImage: true,
+                        uuid : uuidv4(),
+                        detections: [],
                     };
                     
                     setImages([image, ...images]);
