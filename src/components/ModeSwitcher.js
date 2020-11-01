@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, ButtonGroup, Button } from '@material-ui/core';
+import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { currentImageState } from '../state/imageLibrary/images';
 
@@ -8,7 +8,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
+        overflow: "hidden",
+        margin: "0.25rem 0.35rem 0 0.25rem",
+        height: "calc(100% - 0.25rem)",
     },
 }));
 
@@ -32,13 +34,13 @@ export function ModeSwitcher() {
     }
 
     return (
-        <div className={classes.root}>
+        <Paper className={classes.root}>
             <ButtonGroup color="primary" aria-label="Mode Selector">
                 <Button variant={getVariant("original")} onClick={switchToMode("original")}>Original</Button>
                 <Button variant={getVariant("mask")} onClick={switchToMode("mask")}>Mode 1</Button>
                 <Button variant={getVariant("highlight")} onClick={switchToMode("highlight")}>Mode 2</Button>
                 <Button variant={getVariant("annotation")} onClick={switchToMode("annotation")}>Mode 3</Button>
             </ButtonGroup>
-        </div>
+        </Paper>
     );
 }

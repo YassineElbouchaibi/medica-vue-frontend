@@ -8,15 +8,15 @@ import { UploadArea } from './UploadButton';
 
 const useThumbnailListStyles = makeStyles((theme) => ({
     rootAbove: {
-        margin: "0.25em 0 0 0.25em",
+        margin: "0.25rem 0 0 0.25rem",
         height: "15%",
         padding: 0,
         overflow: "hidden",
     },
     rootBelow: {
-        margin: "0.25em 0 0 0.25em",
+        margin: "0.25rem 0 0 0.25rem",
         padding: 0,
-        height: "82%",
+        height: "82.3%",
         overflow: "hidden",
     },
     imgContainer: {

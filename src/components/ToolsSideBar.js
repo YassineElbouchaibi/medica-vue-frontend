@@ -1,25 +1,21 @@
 import React from 'react';
 import { makeStyles, ButtonGroup, Button, Paper, Box } from '@material-ui/core';
-import { PlayArrow, GetApp, School } from '@material-ui/icons';
+import { PlayArrow, GetApp, School, RotateLeft } from '@material-ui/icons';
 import { useRecoilState } from 'recoil';
-import { currentImageState } from '../state/imageLibrary/images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
-        alignItems: "center",
-        justifyContent: "left",
+        alignItems: "flex-start",
+        justifyContent: "center",
         overflow: "hidden",
-        margin: "0.25rem 0.25rem 0 0.25rem",
-        padding: "0 0.25rem 0 0.25rem",
-        height: "calc(100% - 0.25rem)",
+        margin: "0 0.25rem 0 0.25rem",
+        padding: "0.25rem 0 0.25rem 0",
+        minHeight: "100%",
     },
     buttonGroup: {
     },
     button: {
-        height: "3rem",
-        minWidth: "5.5rem",
-        maxWidth:  "5.5rem",
     },
     label: {
         // Aligns the content of the button vertically.
@@ -31,15 +27,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function TopBar() {
+export function ToolsSidebar() {
     const classes = useStyles();
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector" fullWidth>
+            <ButtonGroup classes={classes.buttonGroup} color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
                 <Button classes={{ root: classes.button, label: classes.label }}><PlayArrow className={classes.icon} />Detect Polyps</Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><GetApp className={classes.icon} />Download</Button>
-                <Box style={{width: "100%"}}/>
+                <Box style={{height: "55vh", width: "100%"}}/>
                 <Button classes={{ root: classes.button, label: classes.label }}><School className={classes.icon} />About</Button>
             </ButtonGroup>
         </Paper>

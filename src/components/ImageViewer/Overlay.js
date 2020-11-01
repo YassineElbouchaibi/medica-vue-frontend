@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
     infoBlock: {
         margin: theme.spacing(2),
-        backgroundColor: theme.palette.text.hint,
-        borderRadius: theme.spacing(1)
+        backgroundColor: fade(theme.palette.background.paper, 0.5),
+        borderRadius: theme.spacing(1),
     },
 }));
 
