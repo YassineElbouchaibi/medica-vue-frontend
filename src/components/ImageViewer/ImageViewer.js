@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import CornerstoneViewport from 'react-cornerstone-viewport'
 import { useRecoilValue } from 'recoil';

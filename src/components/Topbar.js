@@ -3,7 +3,6 @@ import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { PlayArrow, GetApp, School, Brightness4 } from '@material-ui/icons';
 import { useModal } from "react-modal-hook";
 import { useRecoilState } from 'recoil';
-import { currentImageState } from '../state/imageLibrary/images';
 import { isDarkThemeState } from '../state/theme';
 import { AboutModal } from '../screens/AboutModal';
 
