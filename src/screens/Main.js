@@ -9,7 +9,7 @@ import { TopBar } from '../components/Topbar';
 import { ToolsSidebar } from '../components/ToolsSideBar';
 import { isDarkThemeState } from '../state/theme';
 import { useRecoilValue } from 'recoil';
-import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
+import { darken } from '@material-ui/core/styles/colorManipulator';
 import { grey } from '@material-ui/core/colors';
 
 function MainOuter() {

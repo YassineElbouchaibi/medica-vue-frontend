@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { Exposure, RotateLeft, Edit, Delete } from '@material-ui/icons';
+import { imageActiveToolState } from '../state/cornerstone/tools';
 import { useRecoilState } from 'recoil';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,13 +28,21 @@ const useStyles = makeStyles((theme) => ({
 
 export function ToolsSidebar() {
     const classes = useStyles();
+    const [currentToolName, setCurrentToolName] = useRecoilState(imageActiveToolState);
+
+    const setTool = (toolName) => () => {
+        setCurrentToolName(toolName);
+    }
+
+    const isToolSet = (toolName) => (toolName === currentToolName);
+    const getToolColor = (toolName) => (isToolSet(toolName) ? "default" : "primary");
 
     return (
         <Paper className={classes.root}>
             <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
-                <Button classes={{ root: classes.button, label: classes.label }}><Exposure className={classes.icon} />Levels</Button>
-                <Button classes={{ root: classes.button, label: classes.label }}><RotateLeft className={classes.icon} />Rotate</Button>
-                <Button classes={{ root: classes.button, label: classes.label }}><Edit className={classes.icon} />Annotate</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Wwwc")} color={getToolColor("Wwwc")}><Exposure className={classes.icon}/>Levels</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Rotate")} color={getToolColor("Rotate")}><RotateLeft className={classes.icon} />Rotate</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("TextMarker")} color={getToolColor("TextMarker")}><Edit className={classes.icon} />Annotate</Button>
                 <Button disabled style={{height: "50vh", width: "100%"}}/>
                 <Button classes={{ root: classes.button, label: classes.label }}><Delete className={classes.icon} />Delete</Button>
             </ButtonGroup>
