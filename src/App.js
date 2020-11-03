@@ -7,7 +7,7 @@ import Main from './screens/Main';
 function App() {
   return (
     <RecoilRoot>
-        <Main/>
+        <Main />
     </RecoilRoot>
   );
 }

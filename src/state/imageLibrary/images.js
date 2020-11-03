@@ -5,6 +5,8 @@ export const base_server_url = "http://localhost:5000";
 export const imagesURI = `${base_server_url}/storage`;
 export const nullImage = "https://res.cloudinary.com/medica-vue/image/upload/v1604237843/no_image_available_x1lq9w.jpg";
 
+export const detectionModes = ["mask", "highlight", "annotation"];
+
 const imagesDefaultState = selector({
   key: 'imagesDefaultState',
   get: async () => {
@@ -18,12 +20,12 @@ const imagesDefaultState = selector({
       images: {
         original: image.image,
         mask: image.mask,
-        highlight: nullImage,
-        annotation: nullImage,
-        groundTruth: image.mask + "?groundTruth",
+        highlight: image.highlight,
+        annotation: image.annotation,
       },
       displayedImage: image.image,
       selectedMode: "original",
+      isGroundTruthEnabled: false,
     }));
   },
 });

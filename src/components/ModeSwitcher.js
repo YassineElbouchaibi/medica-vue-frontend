@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
+import { makeStyles, ButtonGroup, Button, Paper, Switch, FormControlLabel } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
-import { currentImageState, isCurrentLoadingState } from '../state/imageLibrary/images';
+import { currentImageState, isCurrentLoadingState, detectionModes } from '../state/imageLibrary/images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         margin: "0.25rem 0.35rem 0 0.25rem",
         height: "calc(100% - 0.25rem)",
     },
+    switch: {
+        justifySelf: 'flex-end',
+    }
 }));
 
 export function ModeSwitcher() {
@@ -26,11 +29,11 @@ export function ModeSwitcher() {
 
     const switchToMode = (modeName) => {
         return () => {
-            if (currentImage.selectedMode == modeName) {
+            if (currentImage.selectedMode === modeName) {
                 return;
             }
 
-            if (currentImage.displayedImage != currentImage.images[modeName]) {
+            if (currentImage.displayedImage !== currentImage.images[modeName]) {
                 setIsCurrentLoading(true);
             }
 
@@ -40,7 +43,18 @@ export function ModeSwitcher() {
                 selectedMode: modeName,
             });
         };
-    }
+    };
+
+    const toggleGroundTruth = () => {
+        if (detectionModes.includes(currentImage.selectedMode)) {
+            setIsCurrentLoading(true);
+        }
+
+        setCurrentImage({
+            ...currentImage,
+            isGroundTruthEnabled: !currentImage.isGroundTruthEnabled,
+        });
+    };
 
     return (
         <Paper className={classes.root}>
@@ -49,8 +63,13 @@ export function ModeSwitcher() {
                 <Button variant={getVariant("mask")} onClick={switchToMode("mask")}>Mask</Button>
                 <Button variant={getVariant("highlight")} onClick={switchToMode("highlight")}>Highlight</Button>
                 <Button variant={getVariant("annotation")} onClick={switchToMode("annotation")}>Annotation</Button>
-                <Button disabled={currentImage.customImage} variant={getVariant("groundTruth")} onClick={switchToMode("groundTruth")}>Ground Truth</Button>
             </ButtonGroup>
+            <FormControlLabel
+                control={<Switch disabled={currentImage.customImage} checked={currentImage.isGroundTruthEnabled} onChange={toggleGroundTruth} />}
+                label="Ground truth"
+                labelPlacement="start"
+                classN={classes.switch}
+            />
         </Paper>
     );
 }

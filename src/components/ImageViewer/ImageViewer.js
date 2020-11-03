@@ -3,7 +3,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import CornerstoneViewport from 'react-cornerstone-viewport'
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { imageActiveToolState, allTools } from '../../state/cornerstone/tools';
-import { currentImageState, isCurrentLoadingState } from '../../state/imageLibrary/images';
+import { currentImageState, isCurrentLoadingState, detectionModes } from '../../state/imageLibrary/images';
 import { ImageOverlay } from './Overlay';
 import { LoadingOverlay } from '../LoadingOverlay';
 
@@ -27,12 +27,12 @@ export function ImageViewer() {
 
   return (
     <Paper classes={{ root: classes.root }}>
-      {isCurrentLoading ? <LoadingOverlay /> : null}
+      {isCurrentLoading ? <LoadingOverlay message={detectionModes.includes(currentImage.selectedMode) ? "Detecting Polyps..." : "Loading..."}/> : null}
       <CornerstoneViewport
         tools={allTools}
         activeTool={currentToolName}
         imageIds={[
-          currentImage.displayedImage,
+          `${currentImage.displayedImage}${currentImage.isGroundTruthEnabled ? '?groundTruth' : ''}`,
         ]}
         viewportOverlayComponent={ImageOverlay}
         onNewImage={() => setIsCurrentLoading(false)}

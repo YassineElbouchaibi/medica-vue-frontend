@@ -35,10 +35,9 @@ export function UploadArea() {
                     uuid: uuidv4(),
                     images: {
                         original: result.secure_url,
-                        mask: `${base_server_url}/detect/custom?url=${result.secure_url}`,
-                        highlight: nullImage,
-                        annotation: nullImage,
-                        groundTruth: nullImage,
+                        mask: `${base_server_url}/detect/mask/custom?url=${result.secure_url}`,
+                        highlight: `${base_server_url}/detect/highlight/custom?url=${result.secure_url}`,
+                        annotation: `${base_server_url}/detect/annotation/custom?url=${result.secure_url}`,
                     },
                     displayedImage: result.secure_url,
                     selectedMode: "original",

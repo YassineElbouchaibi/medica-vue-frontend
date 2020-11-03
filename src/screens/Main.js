@@ -12,6 +12,8 @@ import { useRecoilValue } from 'recoil';
 import { darken } from '@material-ui/core/styles/colorManipulator';
 import { grey } from '@material-ui/core/colors';
 import { LoadingOverlay } from '../components/LoadingOverlay';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './ErrorFallback';
 
 function MainOuter() {
   const isDarkTheme = useRecoilValue(isDarkThemeState);
@@ -50,7 +52,7 @@ function MainOuter() {
     <>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <React.Suspense fallback={<LoadingOverlay/>}>
+        <React.Suspense fallback={<LoadingOverlay />}>
           <ModalProvider>
             <Main />
           </ModalProvider>
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "stretch",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     fontSize: "calc(10px + 2vmin)",
   },
 }));
@@ -78,22 +80,24 @@ function Main() {
 
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={2}>
-          <ThumbnailList />
-        </Grid>
-        <Grid item xs={10}>
-          <Grid item xs={12} style={{ height: "9%" }}><TopBar /></Grid>
-          <Grid container style={{ height: "80%" }}>
-            {/* <Grid item xs={1} style={{}}></Grid> */}
-            <Grid item xs={11} style={{ height: "100%", padding: "0 0 0 0.25rem" }}>
-              <ImageViewer />
-            </Grid>
-            <Grid item xs={1} style={{}}><ToolsSidebar /></Grid>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Grid container>
+          <Grid item xs={2}>
+            <ThumbnailList />
           </Grid>
-          <Grid item xs={12} style={{ height: "9%" }}><ModeSwitcher /></Grid>
+          <Grid item xs={10}>
+            <Grid item xs={12} style={{ height: "9%" }}><TopBar /></Grid>
+            <Grid container style={{ height: "80%" }}>
+              {/* <Grid item xs={1} style={{}}></Grid> */}
+              <Grid item xs={11} style={{ height: "100%", padding: "0 0 0 0.25rem" }}>
+                <ImageViewer />
+              </Grid>
+              <Grid item xs={1} style={{}}><ToolsSidebar /></Grid>
+            </Grid>
+            <Grid item xs={12} style={{ height: "9%" }}><ModeSwitcher /></Grid>
+          </Grid>
         </Grid>
-      </Grid>
+      </ErrorBoundary>
     </div>
   );
 }
