@@ -1,6 +1,6 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { imagesState, currentImageState, nullImage } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState, nullImage, base_server_url } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -28,7 +28,6 @@ export function UploadArea() {
                     body: form,
                 });
                 const result = await response.json();
-                console.log(result);
 
                 const image = {
                     thumbnail: result.secure_url,
@@ -36,9 +35,10 @@ export function UploadArea() {
                     uuid: uuidv4(),
                     images: {
                         original: result.secure_url,
-                        mask: nullImage,
+                        mask: `${base_server_url}/detect/custom?url=${result.secure_url}`,
                         highlight: nullImage,
                         annotation: nullImage,
+                        groundTruth: nullImage,
                     },
                     displayedImage: result.secure_url,
                     selectedMode: "original",

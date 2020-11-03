@@ -7,12 +7,13 @@ import { useRecoilState } from 'recoil';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
+        alignItems: "center",
+        justifyContent: "space-between",
         overflow: "hidden",
         margin: "0 0.25rem 0 0.25rem",
         padding: "0.25rem 0 0.25rem 0",
         minHeight: "100%",
+        flexDirection: "column",
     },
     button: {
     },
@@ -41,9 +42,12 @@ export function ToolsSidebar() {
         <Paper className={classes.root}>
             <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Wwwc")} color={getToolColor("Wwwc")}><Exposure className={classes.icon}/>Levels</Button>
-                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Rotate")} color={getToolColor("Rotate")}><RotateLeft className={classes.icon} />Rotate</Button>
-                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("TextMarker")} color={getToolColor("TextMarker")}><Edit className={classes.icon} />Annotate</Button>
-                <Button disabled style={{height: "50vh", width: "100%"}}/>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Rotate")} color={getToolColor("Rotate")}><RotateLeft className={classes.icon}/>Rotate</Button>
+                <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("TextMarker")} color={getToolColor("TextMarker")}><Edit className={classes.icon}/>Text</Button>
+                <Button disabled classes={{ root: classes.button, label: classes.label }}></Button>
+            </ButtonGroup>
+            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
+                <Button disabled classes={{ root: classes.button, label: classes.label }}></Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><Delete className={classes.icon} />Delete</Button>
             </ButtonGroup>
         </Paper>

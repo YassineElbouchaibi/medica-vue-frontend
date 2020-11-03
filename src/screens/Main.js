@@ -11,6 +11,7 @@ import { isDarkThemeState } from '../state/theme';
 import { useRecoilValue } from 'recoil';
 import { darken } from '@material-ui/core/styles/colorManipulator';
 import { grey } from '@material-ui/core/colors';
+import { LoadingOverlay } from '../components/LoadingOverlay';
 
 function MainOuter() {
   const isDarkTheme = useRecoilValue(isDarkThemeState);
@@ -47,14 +48,14 @@ function MainOuter() {
 
   return (
     <>
-      <CssBaseline />
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <React.Suspense fallback={<LoadingOverlay/>}>
           <ModalProvider>
             <Main />
           </ModalProvider>
-        </MuiThemeProvider>
-      </React.Suspense>
+        </React.Suspense>
+      </MuiThemeProvider>
     </>
   );
 }

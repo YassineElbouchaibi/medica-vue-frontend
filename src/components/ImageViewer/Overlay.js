@@ -37,7 +37,7 @@ export function ImageOverlay({
                         {`Zoom: ${scaleInPercent}`}
                     </Typography>
                     <Typography variant="h6" align="left">
-                        {`W: ${windowWidth} L: ${windowCenter}`}
+                        {`W: ${windowWidth.toFixed(2)} L: ${windowCenter.toFixed(2)}`}
                     </Typography>
                 </Grid>
             </Grid>

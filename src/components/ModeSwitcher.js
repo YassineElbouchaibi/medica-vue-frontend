@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
-import { currentImageState } from '../state/imageLibrary/images';
+import { currentImageState, isCurrentLoadingState } from '../state/imageLibrary/images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export function ModeSwitcher() {
     const classes = useStyles();
     const [currentImage, setCurrentImage] = useRecoilState(currentImageState);
+    const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
 
     const isModeSelected = (modeName) => (() => (modeName === currentImage.selectedMode));
     const getVariant = (modeName) => {
@@ -25,6 +26,14 @@ export function ModeSwitcher() {
 
     const switchToMode = (modeName) => {
         return () => {
+            if (currentImage.selectedMode == modeName) {
+                return;
+            }
+
+            if (currentImage.displayedImage != currentImage.images[modeName]) {
+                setIsCurrentLoading(true);
+            }
+
             setCurrentImage({
                 ...currentImage,
                 displayedImage: currentImage.images[modeName],
@@ -35,11 +44,12 @@ export function ModeSwitcher() {
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup color="primary" aria-label="Mode Selector">
+            <ButtonGroup disabled={isCurrentLoading} color="primary" aria-label="Mode Selector">
                 <Button variant={getVariant("original")} onClick={switchToMode("original")}>Original</Button>
-                <Button variant={getVariant("mask")} onClick={switchToMode("mask")}>Mode 1</Button>
-                <Button variant={getVariant("highlight")} onClick={switchToMode("highlight")}>Mode 2</Button>
-                <Button variant={getVariant("annotation")} onClick={switchToMode("annotation")}>Mode 3</Button>
+                <Button variant={getVariant("mask")} onClick={switchToMode("mask")}>Mask</Button>
+                <Button variant={getVariant("highlight")} onClick={switchToMode("highlight")}>Highlight</Button>
+                <Button variant={getVariant("annotation")} onClick={switchToMode("annotation")}>Annotation</Button>
+                <Button disabled={currentImage.customImage} variant={getVariant("groundTruth")} onClick={switchToMode("groundTruth")}>Ground Truth</Button>
             </ButtonGroup>
         </Paper>
     );

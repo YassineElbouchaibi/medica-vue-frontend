@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import CornerstoneViewport from 'react-cornerstone-viewport'
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { imageActiveToolState, allTools } from '../../state/cornerstone/tools';
-import { currentImageState } from '../../state/imageLibrary/images';
-import { Loading } from '../Loading';
+import { currentImageState, isCurrentLoadingState } from '../../state/imageLibrary/images';
 import { ImageOverlay } from './Overlay';
+import { LoadingOverlay } from '../LoadingOverlay';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     overflow: "hidden",
     height: "inherit",
-    padding: "0.25rem"
+    padding: "0.25rem",
+    position: "relative",
   },
 }));
 
@@ -22,9 +23,11 @@ export function ImageViewer() {
   const classes = useStyles();
   const currentToolName = useRecoilValue(imageActiveToolState);
   const currentImage = useRecoilValue(currentImageState);
+  const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
 
   return (
     <Paper classes={{ root: classes.root }}>
+      {isCurrentLoading ? <LoadingOverlay /> : null}
       <CornerstoneViewport
         tools={allTools}
         activeTool={currentToolName}
@@ -32,7 +35,7 @@ export function ImageViewer() {
           currentImage.displayedImage,
         ]}
         viewportOverlayComponent={ImageOverlay}
-        loadingIndecatorComponent={Loading}
+        onNewImage={() => setIsCurrentLoading(false)}
       />
     </Paper>
   );

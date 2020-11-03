@@ -1,7 +1,8 @@
 import {atom, selector} from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
-const imagesURI = "http://localhost:5000/storage";
+export const base_server_url = "http://localhost:5000";
+export const imagesURI = `${base_server_url}/storage`;
 export const nullImage = "https://res.cloudinary.com/medica-vue/image/upload/v1604237843/no_image_available_x1lq9w.jpg";
 
 const imagesDefaultState = selector({
@@ -16,9 +17,10 @@ const imagesDefaultState = selector({
       uuid: uuidv4(),
       images: {
         original: image.image,
-        mask: nullImage,
+        mask: image.mask,
         highlight: nullImage,
         annotation: nullImage,
+        groundTruth: image.mask + "?groundTruth",
       },
       displayedImage: image.image,
       selectedMode: "original",
@@ -41,4 +43,9 @@ const currentImageDefaultState = selector({
 export const currentImageState = atom({
   key: 'currentImageState',
   default: currentImageDefaultState,
+});
+
+export const isCurrentLoadingState = atom({
+  key: 'isCurrentLoadingState',
+  default: true,
 });
