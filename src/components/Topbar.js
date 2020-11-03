@@ -47,7 +47,6 @@ export function TopBar() {
         var file = await fetch(`${currentImage.displayedImage}${currentImage.isGroundTruthEnabled ? '?groundTruth' : ''}`).then(r => r.blob());
         link.href = URL.createObjectURL(file);
         link.download = `${currentImage.selectedMode}${(currentImage.isGroundTruthEnabled && detectionModes.includes(currentImage.selectedMode)) ? "_ground_truth" : ""}_${currentImage.uuid.substring(0,5)}.jpg`;
-        console.log(link.download);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
