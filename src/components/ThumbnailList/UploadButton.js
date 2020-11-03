@@ -1,11 +1,12 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { imagesState, currentImageState, base_server_url } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState, base_server_url, isCurrentLoadingState } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
 export function UploadArea() {
     const [images, setImages] = useRecoilState(imagesState);
+    const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
     const [, setCurrentImage] = useRecoilState(currentImageState);
 
     return (
@@ -44,9 +45,10 @@ export function UploadArea() {
                 };
 
                 setImages([image, ...images]);
+                setIsCurrentLoading(true);
                 setCurrentImage(image);
             }}
-            filesLimit={1}
+            filesLimit={isCurrentLoading ? 0 : 1}
         />
     )
 }

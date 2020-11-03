@@ -4,7 +4,7 @@
   status = 200
   force = true
 
-  [[redirects]]
+[[redirects]]
   from = "/api/*"
   to = "http://157.230.211.23:56733/:splat"
   status = 200

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Paper, ListItem, makeStyles, Zoom } from '@material-ui/core';
 import { FixedSizeList as List } from "react-window";
-import { imagesState, currentImageState } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState, isCurrentLoadingState } from '../../state/imageLibrary/images';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { UploadArea } from './UploadButton';
 
@@ -36,14 +36,18 @@ const useThumbnailListStyles = makeStyles((theme) => ({
 
 const Row = ({ data, index, style }) => {
     const classes = useThumbnailListStyles();
-    const [, setCurrentImage] = useRecoilState(currentImageState);
+    const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
+    const [currentImage, setCurrentImage] = useRecoilState(currentImageState);
 
     return (
         <ListItem
             button
             key={index}
             style={style}
+            disabled={isCurrentLoading}
             onClick={() => {
+                if (currentImage.uuid === data[index].uuid) return;
+                setIsCurrentLoading(true)
                 setCurrentImage(data[index]);
             }}
         >
