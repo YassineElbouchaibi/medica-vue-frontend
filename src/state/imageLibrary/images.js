@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const base_server_url = process.env.REACT_APP_BASE_SERVER_URL || "http://localhost:5000";
 export const imagesURI = `${base_server_url}/storage`;
-export const nullImage = "https://res.cloudinary.com/medica-vue/image/upload/v1604237843/no_image_available_x1lq9w.jpg";
 
 export const detectionModes = ["mask", "highlight", "annotation"];
 
