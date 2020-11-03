@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => ({
         overflow: "hidden",
         margin: "0.25rem 0.35rem 0 0.25rem",
         height: "calc(100% - 0.25rem)",
-    },
-    switch: {
-        justifySelf: 'flex-end',
     }
 }));
 
@@ -68,7 +65,6 @@ export function ModeSwitcher() {
                 control={<Switch disabled={currentImage.customImage} checked={currentImage.isGroundTruthEnabled} onChange={toggleGroundTruth} />}
                 label="Ground truth"
                 labelPlacement="start"
-                classN={classes.switch}
             />
         </Paper>
     );
