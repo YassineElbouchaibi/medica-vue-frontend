@@ -1,6 +1,6 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { imagesState, currentImageState, nullImage, base_server_url } from '../../state/imageLibrary/images';
+import { imagesState, currentImageState, base_server_url } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
