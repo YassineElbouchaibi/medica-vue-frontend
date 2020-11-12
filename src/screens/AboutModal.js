@@ -1,7 +1,35 @@
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core';
+import {
+    makeStyles,
+    Paper,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from '@material-ui/core';
+import paperInfo from "../state/doubleUNetInfo.json";
+
+const useStyles = makeStyles((theme) => ({
+    tableHead: {
+        backgroundColor: theme.palette.primary.main,
+    },
+    table: {
+        borderWidth: theme.spacing(0.3),
+        borderColor: theme.palette.primary.main,
+        borderStyle: 'solid',
+    }
+}));
 
 export function AboutModal({ hideModal }) {
+    const classes = useStyles();
     const descriptionElementRef = React.useRef(null);
 
     React.useEffect(() => {
@@ -18,6 +46,7 @@ export function AboutModal({ hideModal }) {
             scroll="paper"
             aria-labelledby="scroll-dialog-title"
             aria-describedby="scroll-dialog-description"
+            maxWidth="lg"
         >
             <DialogTitle id="scroll-dialog-title">DoubleU-Net vs other methods</DialogTitle>
             <DialogContent dividers>
@@ -25,15 +54,38 @@ export function AboutModal({ hideModal }) {
                     id="scroll-dialog-description"
                     ref={descriptionElementRef}
                     tabIndex={-1}
+                    component="span"
                 >
-                    {[...new Array(50)]
-                        .map(
-                            () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-                        )
-                        .join('\n')}
+                    <TableContainer component={Paper} className={classes.table}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow className={classes.tableHead}>
+                                    {paperInfo.columnNames.map((columnName, index) => (
+                                        index === 0 ?
+                                            <TableCell key={"inner" + columnName + index} align="left">{columnName}</TableCell>
+                                            :
+                                            <TableCell key={"inner" + columnName + index} align="center">{columnName}</TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {paperInfo.rows.map((row, index) => (
+                                    <TableRow key={"row_" + index}>
+                                        {
+                                            paperInfo.columnNames.map((columnName, index) => (
+                                                index === 0 ?
+                                                    <TableCell key={"inner_row_" + index} component="th" scope="row" align="left">
+                                                        {row[columnName] ?? "-"}
+                                                    </TableCell>
+                                                    :
+                                                    <TableCell key={"inner_row_" + index} align="center">{row[columnName] ?? "-"}</TableCell>
+                                            ))
+                                        }
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

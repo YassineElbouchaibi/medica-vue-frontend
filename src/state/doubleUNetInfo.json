@@ -1,0 +1,79 @@
+{
+    "columnNames": [
+        "Method",
+        "DSC",
+        "mIoU",
+        "Recall",
+        "Precision"
+    ],
+    "rows": [
+        {
+            "Method": "Fully Convoutional Network",
+            "DSC": "-",
+            "mIoU": "-",
+            "Recall": "0.7732",
+            "Precision": "0.8999"
+        },
+        {
+            "Method": "CNN",
+            "DSC": "(0.62-0.87)",
+            "mIoU": "-",
+            "Recall": "-",
+            "Precision": "-"
+        },
+        {
+            "Method": "SegNet",
+            "DSC": "-",
+            "mIoU": "-",
+            "Recall": "0.8824",
+            "Precision": "-"
+        },
+        {
+            "Method": "Multi-scale patch-based CNN",
+            "DSC": "0.8130",
+            "mIoU": "-",
+            "Recall": "0.7860",
+            "Precision": "0.8090"
+        },
+        {
+            "Method": "MultiResUNet with data augmentation",
+            "DSC": "-",
+            "mIoU": "0.8497",
+            "Recall": "-",
+            "Precision": "-"
+        },
+        {
+            "Method": "Conditional generative adversarial network",
+            "DSC": "0.8848",
+            "mIoU": "0.8127",
+            "Recall": "-",
+            "Precision": "-"
+        },
+        {
+            "Method": "U-Net",
+            "DSC": "0.8781",
+            "mIoU": "0.788",
+            "Recall": "0.7865",
+            "Precision": "0.9329"
+        },
+        {
+            "Method": "DoubleU-Net",
+            "DSC": "0.9239",
+            "mIoU": "0.8611",
+            "Recall": "0.8457",
+            "Precision": "0.9592",
+            "highlightRow": true
+        }
+    ],
+    "credits": [
+        {
+            "author": "D. Jha and M. A. Riegler and D. Johansen and P. Halvorsen and H. D. Johansen",
+            "booktitle": "2020 IEEE 33rd International Symposium on Computer-Based Medical Systems (CBMS)",
+            "title": "DoubleU-Net: A Deep Convolutional Neural Network for Medical Image Segmentation",
+            "year": "2020",
+            "pages": "558-564",
+            "paperLink": "https://arxiv.org/pdf/2006.04868",
+            "githubLink": "https://github.com/DebeshJha/2020-CBMS-DoubleU-Net"
+        }
+    ]
+}
