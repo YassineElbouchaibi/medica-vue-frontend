@@ -14,6 +14,7 @@ import { grey } from '@material-ui/core/colors';
 import { LoadingOverlay } from '../components/LoadingOverlay';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './ErrorFallback';
+import { packagesInfoState } from '../state/packagesInfo';
 
 function MainOuter() {
   const isDarkTheme = useRecoilValue(isDarkThemeState);
@@ -52,7 +53,7 @@ function MainOuter() {
     <>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <React.Suspense fallback={<LoadingOverlay />}>
+        <React.Suspense fallback={<LoadingOverlay isFunMode={true}/>}>
           <ModalProvider>
             <Main />
           </ModalProvider>
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Main() {
   const classes = useStyles();
+  useRecoilValue(packagesInfoState); // Force load
 
   return (
     <div className={classes.root}>

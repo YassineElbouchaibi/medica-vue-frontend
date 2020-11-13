@@ -13,6 +13,7 @@
     "cornerstone-tools": "^4.22.0",
     "cornerstone-wado-image-loader": "^3.1.2",
     "cornerstone-web-image-loader": "^2.1.1",
+    "funnies": "^2.1.0",
     "hammerjs": "^2.0.8",
     "loadash": "^1.0.0",
     "material-ui-dropzone": "^3.5.0",
