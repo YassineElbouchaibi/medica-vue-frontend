@@ -32,7 +32,7 @@ export function ImageViewer() {
         tools={allTools}
         activeTool={currentToolName}
         imageIds={[
-          `${currentImage.displayedImage}${currentImage.isGroundTruthEnabled ? '?groundTruth' : ''}`,
+          `${currentImage.displayedImage}?dummyId=${currentImage._resetCounter}${currentImage.isGroundTruthEnabled ? '&groundTruth' : ''}`,
         ]}
         viewportOverlayComponent={ImageOverlay}
         onNewImage={() => setIsCurrentLoading(false)}

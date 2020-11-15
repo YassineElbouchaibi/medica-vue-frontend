@@ -3,6 +3,7 @@ import { makeStyles, ButtonGroup, Button, Paper } from '@material-ui/core';
 import { Exposure, RotateLeft, Edit, Delete } from '@material-ui/icons';
 import { imageActiveToolState } from '../state/cornerstone/tools';
 import { useRecoilState } from 'recoil';
+import { currentImageState, isCurrentLoadingState } from '../state/imageLibrary/images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
 export function ToolsSidebar() {
     const classes = useStyles();
     const [currentToolName, setCurrentToolName] = useRecoilState(imageActiveToolState);
+    const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
+    const [currentImage, setCurrentImage] = useRecoilState(currentImageState);
+
+    const resetImage = () => {
+        setIsCurrentLoading(true);
+        setCurrentImage({
+            ...currentImage,
+            _resetCounter: currentImage._resetCounter + 1,
+        });
+    };
 
     const setTool = (toolName) => () => {
         setCurrentToolName(toolName);
@@ -54,7 +65,7 @@ export function ToolsSidebar() {
             </ButtonGroup>
             <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical" className={classes.buttonGroup}>
                 <Button disabled classes={{ root: classes.button, label: classes.label }}></Button>
-                <Button classes={{ root: classes.button, label: classes.label }}><Delete className={classes.icon} />Delete</Button>
+                <Button disabled={isCurrentLoading} classes={{ root: classes.button, label: classes.label }} onClick={resetImage}><Delete className={classes.icon} />Delete</Button>
             </ButtonGroup>
         </Paper>
     );

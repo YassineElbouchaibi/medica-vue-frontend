@@ -53,6 +53,7 @@ export function UploadArea() {
                     },
                     displayedImage: result.secure_url,
                     selectedMode: "original",
+                    _resetCounter: 0, // Increment to trigger reset of image
                 };
 
                 setImages([image, ...images]);

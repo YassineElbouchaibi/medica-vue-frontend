@@ -48,7 +48,7 @@ const Row = ({ data, index, style }) => {
             disabled={isCurrentLoading}
             onClick={() => {
                 if (currentImage.uuid === data[index].uuid) return;
-                setIsCurrentLoading(true)
+                setIsCurrentLoading(true);
                 setCurrentImage(data[index]);
             }}
         >

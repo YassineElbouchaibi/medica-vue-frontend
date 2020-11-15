@@ -26,6 +26,7 @@ const imagesDefaultState = selector({
       displayedImage: image.image,
       selectedMode: "original",
       isGroundTruthEnabled: false,
+      _resetCounter: 0, // Increment to trigger reset of image
     }));
   },
 });
