@@ -16,7 +16,7 @@ const useThumbnailListStyles = makeStyles((theme) => ({
     rootBelow: {
         margin: "0.25rem 0 0 0.25rem",
         padding: 0,
-        height: "82.3%",
+        height: "calc(85% - 1rem)",
         overflow: "hidden",
     },
     imgContainer: {
@@ -24,12 +24,8 @@ const useThumbnailListStyles = makeStyles((theme) => ({
     },
     img: {
         borderRadius: "4%",
-        width: "100%",
+        height: "100%",
         transition: "all 0.3s ease 0s",
-        "&:hover": {
-            transform: "scale(1.1)",
-            zIndex: 1e4,
-        },
     },
 
 }));
@@ -39,11 +35,16 @@ const Row = ({ data, index, style }) => {
     const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
     const [currentImage, setCurrentImage] = useRecoilState(currentImageState);
 
+
+
     return (
         <ListItem
             button
             key={index}
-            style={style}
+            style={{
+                ...style,
+                justifyContent: "center",
+            }}
             disabled={isCurrentLoading}
             onClick={() => {
                 if (currentImage.uuid === data[index].uuid) return;

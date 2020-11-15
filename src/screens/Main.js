@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Grid, MuiThemeProvider, CssBaseline, createMuiTheme } from '@material-ui/core';
+import { makeStyles, Grid, MuiThemeProvider, CssBaseline, createMuiTheme, responsiveFontSizes, useMediaQuery, useTheme } from '@material-ui/core';
 import '../initCornerstone';
 import { ModalProvider } from "react-modal-hook";
 import { ThumbnailList } from '../components/ThumbnailList/ThumbnailList';
@@ -19,7 +19,7 @@ import { packagesInfoState } from '../state/packagesInfo';
 function MainOuter() {
   const isDarkTheme = useRecoilValue(isDarkThemeState);
 
-  const theme = createMuiTheme({
+  const theme = responsiveFontSizes(createMuiTheme({
     palette: {
       type: isDarkTheme ? "dark" : "light",
       background: {
@@ -47,7 +47,7 @@ function MainOuter() {
         }
       },
     },
-  });
+  }));
 
   return (
     <>
@@ -79,6 +79,16 @@ const useStyles = makeStyles((theme) => ({
 function Main() {
   const classes = useStyles();
   useRecoilValue(packagesInfoState); // Force load
+  const theme = useTheme();
+  const isScreenWideEnough = useMediaQuery(theme.breakpoints.up('md'));
+
+  if (!isScreenWideEnough) {
+    return (
+      <div className={classes.root}>
+        <ErrorFallback error={{message: `Your device must be at least 960px wide. Try rotating your device.`}}/>
+      </div>
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -96,7 +106,7 @@ function Main() {
               </Grid>
               <Grid item xs={1} style={{}}><ToolsSidebar /></Grid>
             </Grid>
-            <Grid item xs={12} style={{ height: "9%" }}><ModeSwitcher /></Grid>
+            <Grid item xs={12} style={{ height: "10%" }}><ModeSwitcher /></Grid>
           </Grid>
         </Grid>
       </ErrorBoundary>

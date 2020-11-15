@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export function ErrorFallback({ error, resetErrorBoundary }) {
+export function ErrorFallback({ error }) {
     const classes = useStyles();
 
     return (
@@ -22,7 +22,7 @@ export function ErrorFallback({ error, resetErrorBoundary }) {
         <Box m={1}/>
         <Divider variant="middle" orientation="horizontal" style={{width: "50%"}}/>
         <Box m={1}/>
-        <Typography variant="body1"><pre>{error.message}</pre></Typography>
+        <Typography variant="body1">{error.message}</Typography>
       </Paper>
     )
   }

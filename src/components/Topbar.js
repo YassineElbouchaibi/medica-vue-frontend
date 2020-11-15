@@ -17,18 +17,20 @@ const useStyles = makeStyles((theme) => ({
         padding: "0 0.25rem 0 0.25rem",
         height: "calc(100% - 0.25rem)",
     },
+    buttonGroup: {
+        height: "70%",
+    },
     button: {
-        height: "3rem",
-        minWidth: "5.5rem",
-        maxWidth:  "5.5rem",
+        padding: "0 3% 0 3%",
+        maxWidth: "10%",
     },
     label: {
         // Aligns the content of the button vertically.
         flexDirection: 'column',
-        fontSize: '0.5rem !important',
+        fontSize: theme.spacing(1.4) + "px !important",
     },
     icon: {
-        fontSize: '1.9rem !important',
+        fontSize: theme.spacing(3.5) + "px !important",
     }
 }));
 
@@ -54,7 +56,7 @@ export function TopBar() {
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" fullWidth>
+            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" fullWidth className={classes.buttonGroup}>
                 {/* <Button classes={{ root: classes.button, label: classes.label }} onClick={runDetection}><PlayArrow className={classes.icon} />Detect Polyps</Button> */}
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={downloadCurrentImage}><GetApp className={classes.icon} />Download</Button>
                 <Button disabled style={{width: "100%"}}/>

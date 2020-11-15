@@ -15,15 +15,21 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "100%",
         flexDirection: "column",
     },
+    buttonGroup: {
+        height: "100%",
+        width: "80%",
+    },
     button: {
+        padding: "10% 0 10% 0",
+        maxHeight: "20%",
     },
     label: {
         // Aligns the content of the button vertically.
         flexDirection: 'column',
-        fontSize: '0.5rem !important',
+        fontSize: theme.spacing(1.4) + "px !important",
     },
     icon: {
-        fontSize: '1.9rem !important',
+        fontSize: theme.spacing(3.5) + "px !important",
     }
 }));
 
@@ -40,13 +46,13 @@ export function ToolsSidebar() {
 
     return (
         <Paper className={classes.root}>
-            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
+            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical" className={classes.buttonGroup}>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Wwwc")} color={getToolColor("Wwwc")}><Exposure className={classes.icon}/>Levels</Button>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("Rotate")} color={getToolColor("Rotate")}><RotateLeft className={classes.icon}/>Rotate</Button>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={setTool("TextMarker")} color={getToolColor("TextMarker")}><Edit className={classes.icon}/>Text</Button>
                 <Button disabled classes={{ root: classes.button, label: classes.label }}></Button>
             </ButtonGroup>
-            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical">
+            <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" orientation="vertical" className={classes.buttonGroup}>
                 <Button disabled classes={{ root: classes.button, label: classes.label }}></Button>
                 <Button classes={{ root: classes.button, label: classes.label }}><Delete className={classes.icon} />Delete</Button>
             </ButtonGroup>

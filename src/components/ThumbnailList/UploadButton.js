@@ -1,16 +1,27 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core';
 import { DropzoneAreaBase } from 'material-ui-dropzone'
 import { imagesState, currentImageState, base_server_url, isCurrentLoadingState } from '../../state/imageLibrary/images';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
+const useStyles = makeStyles((theme) => ({
+    dropzone: {
+        height: "100%",
+    },
+    paragraph: {},
+}));
+
 export function UploadArea() {
+    const classes = useStyles();
     const [images, setImages] = useRecoilState(imagesState);
     const [isCurrentLoading, setIsCurrentLoading] = useRecoilState(isCurrentLoadingState);
     const [, setCurrentImage] = useRecoilState(currentImageState);
 
     return (
         <DropzoneAreaBase
+            dropzoneClass={classes.dropzone}
+            dropzoneParagraphClass={classes.paragraph}
             acceptedFiles={['image/*']}
             dropzoneText={"Drag and drop an image here or click"}
             onAdd={async (pImages) => {
