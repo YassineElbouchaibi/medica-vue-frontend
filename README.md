@@ -178,15 +178,15 @@ Open an issue.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/YassineElbouchaibi/medica-vue-backend.svg?style=flat-square
-[contributors-url]: https://github.com/YassineElbouchaibi/medica-vue-backend/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/YassineElbouchaibi/medica-vue-backend.svg?style=flat-square
-[forks-url]: https://github.com/YassineElbouchaibi/medica-vue-backend/network/members
-[stars-shield]: https://img.shields.io/github/stars/YassineElbouchaibi/medica-vue-backend.svg?style=flat-square
-[stars-url]: https://github.com/YassineElbouchaibi/medica-vue-backend/stargazers
-[issues-shield]: https://img.shields.io/github/issues/YassineElbouchaibi/medica-vue-backend.svg?style=flat-square
-[issues-url]: https://github.com/YassineElbouchaibi/medica-vue-backend/issues
-[license-shield]: https://img.shields.io/github/license/YassineElbouchaibi/medica-vue-backend.svg?style=flat-square
-[license-url]: https://github.com/YassineElbouchaibi/medica-vue-backend/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/YassineElbouchaibi/medica-vue-frontend.svg?style=flat-square
+[contributors-url]: https://github.com/YassineElbouchaibi/medica-vue-frontend/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/YassineElbouchaibi/medica-vue-frontend.svg?style=flat-square
+[forks-url]: https://github.com/YassineElbouchaibi/medica-vue-frontend/network/members
+[stars-shield]: https://img.shields.io/github/stars/YassineElbouchaibi/medica-vue-frontend.svg?style=flat-square
+[stars-url]: https://github.com/YassineElbouchaibi/medica-vue-frontend/stargazers
+[issues-shield]: https://img.shields.io/github/issues/YassineElbouchaibi/medica-vue-frontend.svg?style=flat-square
+[issues-url]: https://github.com/YassineElbouchaibi/medica-vue-frontend/issues
+[license-shield]: https://img.shields.io/github/license/YassineElbouchaibi/medica-vue-frontend.svg?style=flat-square
+[license-url]: https://github.com/YassineElbouchaibi/medica-vue-frontend/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/yassine-el-bouchaibi
