@@ -31,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         fontSize: theme.spacing(3.5) + "px !important",
+    },
+    logo: {
+        objectFit: "contain",
+        width: "25%",
+        maxWidth: "14rem",
     }
 }));
 
@@ -59,7 +64,9 @@ export function TopBar() {
             <ButtonGroup color="primary" variant="text" aria-label="Mode Selector" fullWidth className={classes.buttonGroup}>
                 {/* <Button classes={{ root: classes.button, label: classes.label }} onClick={runDetection}><PlayArrow className={classes.icon} />Detect Polyps</Button> */}
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={downloadCurrentImage}><GetApp className={classes.icon} />Download</Button>
-                <Button disabled style={{width: "100%"}}/>
+                <Button disabled style={{width: "100%"}}>
+                    <img alt="logo" src="../Logo.png" className={classes.logo}/>
+                </Button>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={toggleTheme}><Brightness4 className={classes.icon} />Theme</Button>
                 <Button classes={{ root: classes.button, label: classes.label }} onClick={showModal}><School className={classes.icon} />About</Button>
             </ButtonGroup>
